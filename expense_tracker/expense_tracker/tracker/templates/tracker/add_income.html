@@ -1,0 +1,43 @@
+{% load static %}
+
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tracker/styling.css' %}">
+
+<div class="container">
+    <div class="card">
+        <h2 class="form-title">Add Income</h2>
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+            
+            <!-- Description Field -->
+            <label for="{{ form.description.id_for_label }}">Description</label>
+            {{ form.description }}
+
+            <!-- Amount Field -->
+            <label for="{{ form.amount.id_for_label }}">Amount</label>
+            {{ form.amount }}
+
+            <!-- Date Field -->
+            <label for="{{ form.date.id_for_label }}">Date</label>
+            {{ form.date }}
+
+            <!-- Category Field -->
+            <label for="{{ form.category.id_for_label }}">Category</label>
+            {{ form.category }}
+
+            <!-- Custom Category (Other) -->
+            <label for="{{ form.custom_category.id_for_label }}" id="custom-category-label" style="display:none;">Enter Custom Category</label>
+            {{ form.custom_category }}
+
+            <button type="submit" class="btn-primary">Add Income</button>
+        </form>
+        <p class="link">
+            <a href="{% url 'tracker:dashboard' %}">Back to Dashboard</a>
+        </p>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,175 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'tracker/dashboard.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar with Actions -->
+    <div class="dashboard-sidebar">
+        <a href="{% url 'tracker:add_income' %}">Add Income</a>
+        <a href="{% url 'tracker:add_expense' %}">Add Expense</a>
+        <a href="{% url 'tracker:income_history' %}">Income History</a>
+        <a href="{% url 'tracker:expense_history' %}">Expense History</a>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-main">
+
+        <!-- App Title -->
+        <h1 class="main-title">TrackMate</h1>
+
+        <!-- Header with Welcome and Logout -->
+        <div class="dashboard-header">
+            <h2 class="welcome-text">Welcome {{ user.username }}</h2>
+            <a href="{% url 'tracker:logout' %}" class="logout-btn">Logout</a>
+        </div>
+
+        <!-- Totals Cards -->
+        <div class="totals">
+            <div class="total-box income-box">
+                <h3>Total Income</h3>
+                <p>₹ {{ total_income|default:0 }}</p>
+            </div>
+            <div class="total-box expense-box">
+                <h3>Total Expense</h3>
+                <p>₹ {{ total_expense|default:0 }}</p>
+            </div>
+            <div class="total-box net-box">
+                <h3>Net Income</h3>
+                <p>₹ {{ net_income|default:0 }}</p>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts"
+             data-income="{{ total_income|default:0 }}"
+             data-expense="{{ total_expense|default:0 }}"
+             data-net="{{ net_income|default:0 }}"
+             data-max-income="{{ max_income|default:0 }}"
+             data-min-income="{{ min_income|default:0 }}"
+             data-max-expense="{{ max_expense|default:0 }}"
+             data-min-expense="{{ min_expense|default:0 }}">
+
+            <!-- Pie Chart -->
+            <div class="chart-container">
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="chart-container">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Dashboard JS -->
+<script>
+    const chartsDiv = document.querySelector('.charts');
+
+    const TOTAL_INCOME = parseFloat(chartsDiv.dataset.income);
+    const TOTAL_EXPENSE = parseFloat(chartsDiv.dataset.expense);
+    const NET_INCOME = parseFloat(chartsDiv.dataset.net);
+    const MAX_INCOME = parseFloat(chartsDiv.dataset.maxIncome);
+    const MIN_INCOME = parseFloat(chartsDiv.dataset.minIncome);
+    const MAX_EXPENSE = parseFloat(chartsDiv.dataset.maxExpense);
+    const MIN_EXPENSE = parseFloat(chartsDiv.dataset.minExpense);
+
+    // ===== Medium-Tone Colors =====
+   const categoryColors = {
+    totalIncome: '#FFD700',   // Yellow (Gold)
+    maxIncome: '#1E90FF',     // Blue (Dodger Blue)
+    minIncome: '#FF4500',     // Red-Orange
+    totalExpense: '#32CD32',  // Green (Lime Green)
+    maxExpense: '#FF1493',    // Pink (Deep Pink)
+    minExpense: '#8A2BE2',    // Purple (Blue Violet)
+    net: '#00CED1'            // Cyan (Dark Turquoise)
+};
+
+    // ===== Pie Chart =====
+    new Chart(document.getElementById('pieChart').getContext('2d'), {
+        type: 'pie',
+        data: {
+            labels: ['Total Income', 'Max Income', 'Min Income', 'Total Expense', 'Max Expense', 'Min Expense'],
+            datasets: [{
+                data: [TOTAL_INCOME, MAX_INCOME, MIN_INCOME, TOTAL_EXPENSE, MAX_EXPENSE, MIN_EXPENSE],
+                backgroundColor: [
+                    categoryColors.totalIncome,
+                    categoryColors.maxIncome,
+                    categoryColors.minIncome,
+                    categoryColors.totalExpense,
+                    categoryColors.maxExpense,
+                    categoryColors.minExpense
+                ],
+                borderColor: '#fff',
+                borderWidth: 3,
+                hoverOffset: 15
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { size: 14 } } },
+                tooltip: {
+                    callbacks: {
+                        label: (context) => `${context.label}: ₹ ${context.raw.toLocaleString()}`
+                    }
+                }
+            },
+            animation: { animateScale: true, animateRotate: true }
+        }
+    });
+
+    // ===== Bar Chart =====
+    new Chart(document.getElementById('barChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['Total Income', 'Total Expense', 'Net', 'Max Income', 'Min Income', 'Max Expense', 'Min Expense'],
+            datasets: [{
+                label: 'Amount in ₹',
+                data: [TOTAL_INCOME, TOTAL_EXPENSE, NET_INCOME, MAX_INCOME, MIN_INCOME, MAX_EXPENSE, MIN_EXPENSE],
+                backgroundColor: [
+                    categoryColors.totalIncome,
+                    categoryColors.totalExpense,
+                    categoryColors.net,
+                    categoryColors.maxIncome,
+                    categoryColors.minIncome,
+                    categoryColors.maxExpense,
+                    categoryColors.minExpense
+                ],
+                borderRadius: 15,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { callback: (value) => '₹ ' + value.toLocaleString() },
+                    grid: { color: '#e9ecef' }
+                },
+                x: { ticks: { color: '#222' }, grid: { display: false } }
+            },
+            plugins: { legend: { display: false } },
+            animation: { duration: 1500, easing: 'easeInOutQuart' }
+        }
+    });
+</script>
+
+</body>
+</html>

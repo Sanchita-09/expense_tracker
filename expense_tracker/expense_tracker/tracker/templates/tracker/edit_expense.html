@@ -1,0 +1,22 @@
+
+{% load static %}
+
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'tracker/styling.css' %}">
+
+<div class="container">
+    <div class="card">
+        <h2 class="form-title">Edit Expense</h2>
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-primary">Update Expense</button>
+        </form>
+        <p class="link">
+            <a href="{% url 'tracker:expense_history' %}">Back to Expense History</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

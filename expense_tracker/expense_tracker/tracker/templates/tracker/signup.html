@@ -1,0 +1,23 @@
+
+{% load static %}
+
+
+
+{% block content %}
+<!-- Link external CSS -->
+<link rel="stylesheet" href="{% static 'tracker/styling.css' %}">
+
+<div class="container">
+    <div class="card">
+        <h2 class="form-title">TrackeMate - Create Account</h2>
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-primary">Sign Up</button>
+        </form>
+        <p class="link">
+            Already have an account? <a href="{% url 'tracker:login' %}">Login</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
