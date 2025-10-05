@@ -21,13 +21,11 @@ TrackMate is a Django-based Expense Tracker web application that helps users man
 ## Installation:
 
 1.Clone the repository:
-git clone (https://github.com/Sanchita-09/expense_tracker)
+git clone (https://github.com/Sanchita-09/expense_tracker) ,
 cd expense_tracker
 
 2.Create and activate a virtual environment:
-python -m venv venv
-
-# Windows
+python -m venv venv ,
 venv\Scripts\activate
 
 3.Install dependencies:
@@ -80,5 +78,6 @@ This project uses **SQLite** as the database (`db.sqlite3`). You can view the da
 ##  Usage
 This project is open for personal or educational use.  
 Feel free to use, modify, and share it – no restrictions. 
+
 
 
