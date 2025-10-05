@@ -11,37 +11,6 @@ TrackMate is a Django-based Expense Tracker web application that helps users man
 5.Net income calculation
 6.Responsive and user-friendly dashboard
 
-## Project Structure
-
-expense_tracker/
-│── manage.py
-│── db.sqlite3
-│── requirements.txt
-│
-├── expense_tracker/ # Project configuration
-│ ├── init.py
-│ ├── settings.py # Django settings
-│ ├── urls.py # Project-level URLs
-│ ├── wsgi.py
-│ └── asgi.py
-│
-├── tracker/ # Main app
-│ ├── migrations/ # Database migrations
-│ ├── templates/tracker/ # HTML templates (dashboard, forms, history)
-│ ├── static/tracker/ # CSS, JS, images
-│ ├── admin.py
-│ ├── apps.py
-│ ├── forms.py # Django forms
-│ ├── models.py # Database models
-│ ├── urls.py # App-level routes
-│ └── views.py # Core logic
-│
-└── screenshots/ # App screenshots for README
-├── homepage.png
-├── dashboard.png
-├── add_expense.png
-└── income_history.png
-
 ## Technology Stack:
 
 1.Backend: Python, Django
@@ -52,7 +21,7 @@ expense_tracker/
 ## Installation:
 
 1.Clone the repository:
-git clone <your-repo-link>
+git clone [<your-repo-link>](https://github.com/Sanchita-09/expense_tracker)
 cd expense_tracker
 
 2.Create and activate a virtual environment:
@@ -111,3 +80,4 @@ This project uses **SQLite** as the database (`db.sqlite3`). You can view the da
 ##  Usage
 This project is open for personal or educational use.  
 Feel free to use, modify, and share it – no restrictions. 
+
