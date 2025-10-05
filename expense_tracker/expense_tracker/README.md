@@ -73,11 +73,12 @@ This project uses **SQLite** as the database (`db.sqlite3`). You can view the da
 - Frontend: HTML, CSS, JavaScript
 - Charts: Chart.js
 - Database: SQLite (default, can switch to PostgreSQL/MySQL)
- Contributing
+
 
 ##  Usage
 This project is open for personal or educational use.  
 Feel free to use, modify, and share it – no restrictions. 
+
 
 
 
