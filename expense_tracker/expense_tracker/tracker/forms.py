@@ -19,15 +19,5 @@ class TransactionForm(forms.ModelForm):
         if self.instance and self.instance.category != "Other":
             self.fields['custom_category'].widget.attrs['style'] = 'display:none;'
 
-# JS snippet to show/hide custom category field in template:
-# <script>
-# const categorySelect = document.getElementById('category-select');
-# const customInput = document.getElementById('custom-category-input');
-# categorySelect.addEventListener('change', function() {
-#     if(this.value === 'Other'){
-#         customInput.style.display = 'block';
-#     } else {
-#         customInput.style.display = 'none';
-#     }
-# });
-# </script>
+
+
