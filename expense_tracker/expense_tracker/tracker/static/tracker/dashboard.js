@@ -9,16 +9,16 @@ const MIN_INCOME = parseFloat(chartsDiv.dataset.minIncome || 0);
 const MAX_EXPENSE = parseFloat(chartsDiv.dataset.maxExpense || TOTAL_EXPENSE);
 const MIN_EXPENSE = parseFloat(chartsDiv.dataset.minExpense || 0);
 
-// ===== Medium/Dark Colors =====
+// ===== Colors =====
 
 const categoryColors = {
-    totalIncome: '#FFD700',   // Yellow (Gold)
-    maxIncome: '#1E90FF',     // Blue (Dodger Blue)
-    minIncome: '#FF4500',     // Red-Orange
-    totalExpense: '#32CD32',  // Green (Lime Green)
-    maxExpense: '#FF1493',    // Pink (Deep Pink)
-    minExpense: '#8A2BE2',    // Purple (Blue Violet)
-    net: '#00CED1'            // Cyan (Dark Turquoise)
+    totalIncome: '#FFD700',   
+    maxIncome: '#1E90FF',     
+    minIncome: '#FF4500',     
+    totalExpense: '#32CD32',  
+    maxExpense: '#FF1493',    
+    minExpense: '#8A2BE2',   
+    net: '#00CED1'            
 };
 
 
@@ -131,3 +131,4 @@ new Chart(barCtx, {
         animation: { duration: 1500, easing: 'easeInOutQuart' }
     }
 });
+
