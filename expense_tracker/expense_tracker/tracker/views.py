@@ -49,7 +49,7 @@ def logout_view(request):
     logout(request)
     return redirect('tracker:login')
 
-
+# Dashboard view
 @login_required
 def dashboard(request):
     # Filter transactions
@@ -80,6 +80,7 @@ def dashboard(request):
     }
     return render(request, 'tracker/dashboard.html', context)
 
+#Add income view
 @login_required
 def add_income(request):
     if request.method == "POST":
@@ -94,7 +95,7 @@ def add_income(request):
         form = TransactionForm()
     return render(request, 'tracker/add_income.html', {'form': form})
 
-# Add expense
+# Add expense view
 @login_required
 def add_expense(request):
     if request.method == "POST":
@@ -110,21 +111,21 @@ def add_expense(request):
     return render(request, 'tracker/add_expense.html', {'form': form})
 
 
-# Income history
+# Income history view
 @login_required
 def income_history(request):
     incomes = Transaction.objects.filter(user=request.user, type='income')
     return render(request, 'tracker/history_income.html', {'incomes': incomes})
 
 
-# Expense history
+# Expense history view
 @login_required
 def expense_history(request):
     expenses = Transaction.objects.filter(user=request.user, type='expense')
     return render(request, 'tracker/history_expense.html', {'expenses': expenses})
 
 
-# Edit income
+# Edit income view
 @login_required
 def edit_income(request, pk):
     income = get_object_or_404(Transaction, pk=pk, user=request.user, type='income')
@@ -138,7 +139,7 @@ def edit_income(request, pk):
     return render(request, 'tracker/edit_income.html', {'form': form})
 
 
-# Edit expense
+# Edit expense view
 @login_required
 def edit_expense(request, pk):
     expense = get_object_or_404(Transaction, pk=pk, user=request.user, type='expense')
@@ -152,7 +153,7 @@ def edit_expense(request, pk):
     return render(request, 'tracker/edit_expense.html', {'form': form})
 
 
-# Delete income
+# Delete income view
 @login_required
 def delete_income(request, pk):
     print("Trying to delete income with pk:", pk, "for user:", request.user)
@@ -162,11 +163,12 @@ def delete_income(request, pk):
 
 
 
-# Delete expense
+# Delete expense view
 @login_required
 def delete_expense(request, pk):
     print("Trying to delete income with pk:", pk, "for user:", request.user)
     expense = get_object_or_404(Transaction, pk=pk, user=request.user, type='expense')
     expense.delete()
     return redirect('tracker:expense_history')
+
 
