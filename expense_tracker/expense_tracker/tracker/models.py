@@ -8,16 +8,13 @@ class Transaction(models.Model):
     ]
 
     CATEGORY_CHOICES = [
-        # Income categories
         ("Salary", "Salary"),
         ("Business", "Business"),
         ("Gift", "Gift"),
-        # Expense categories
         ("Food", "Food"),
         ("Travel", "Travel"),
         ("Shopping", "Shopping"),
         ("Bills", "Bills"),
-        # Generic
         ("Other", "Other"),
     ]
 
@@ -38,3 +35,4 @@ class Transaction(models.Model):
     def display_category(self):
         """Return custom category if set, else selected category"""
         return self.custom_category if self.category == "Other" and self.custom_category else self.category
+
