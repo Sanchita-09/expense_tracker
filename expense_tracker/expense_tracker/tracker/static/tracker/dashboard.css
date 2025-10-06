@@ -1,10 +1,9 @@
 :root {
-    --income-color: #8B4513;   /* Dark brown for Income amount */
-    --expense-color: #8B4513;  /* Dark red for Expense amount */
-    --net-color: #8B4513;      /* Dark indigo for Net amount */
+    --income-color: #8B4513;   
+    --expense-color: #8B4513;  
+    --net-color: #8B4513;      
 }
 
-/* ================== Global Reset ================== */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +19,6 @@ body {
     position: relative;
 }
 
-/* Overlay */
 body::before {
     content: "";
     position: fixed;
@@ -149,16 +147,16 @@ body::before {
 .total-box h3 {
     font-size: 1.3rem;
     font-weight: 700;
-    background: none;                  /* remove gradient */
+    background: none;                  
     -webkit-background-clip: initial;
-    -webkit-text-fill-color: #222;    /* Dark heading text */
+    -webkit-text-fill-color: #222;   
     margin-bottom: 12px;
 }
 
 .total-box p {
     font-size: 1.9rem;
     font-weight: 700;
-    color: #111;                       /* Dark amount text */
+    color: #111;                      
 }
 
 /* Specific amounts */
@@ -254,3 +252,4 @@ body::before {
         max-height: 300px;
     }
 }
+
