@@ -1,4 +1,4 @@
-/* ================== Global Reset ================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -193,7 +193,7 @@ background: rgba(242, 243, 240, 0.988);  background-size: 320px auto;
 
 .back-link {
     width: 95%;
-    margin: 20px auto 40px auto; /* spacing below table */
+    margin: 20px auto 40px auto; 
     text-align: center;
 }
 
@@ -337,3 +337,4 @@ table td:last-child {
     font-size: 0.9rem;
   }
 }
+
